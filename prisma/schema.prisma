@@ -14,4 +14,21 @@ model Client {
   address   String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  clientFeatures  ClientFeatures?
+}
+
+model ClientFeatures{
+  id            Int @id @default(autoincrement())
+  bedrooms      Int
+  parkingSpots  Int?
+  area          Int?
+  hasSwimmingpool Boolean
+  hasGardenYard Boolean
+  hasBalcony Boolean
+
+  client    Client @relation(fields: [clientId], references: [id])
+  clientId Int @unique
+
+  createdAt DateTime @default(now())
 }
